@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="432" height="126" viewBox="0 0 432 126" role="img" aria-label="WASHPRO">
+  <text x="4" y="84" font-family="Archivo, system-ui, sans-serif" font-weight="900" font-size="82" letter-spacing="-3"><tspan fill="#1d1a1e">WASH</tspan><tspan fill="#C0392B">PRO</tspan></text>
+  <path d="M10 104 H398" stroke="#1d1a1e" stroke-width="7" stroke-linecap="round"></path>
+  <path d="M414 105c4.4 5.8 6.7 9.2 6.7 12a6.7 6.7 0 0 1-13.4 0C407.3 114.2 409.6 110.8 414 105Z" fill="#DB3A2A"></path>
+</svg>
