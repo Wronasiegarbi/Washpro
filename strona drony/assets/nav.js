@@ -35,14 +35,37 @@
     });
   }
 
-  // Contact form (demo)
+  // Contact form → Web3Forms (wysyłka na biuro@washpro.pl)
   var form = document.querySelector('.form');
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
       var note = form.querySelector('.form-note');
-      if (note) note.classList.add('show');
-      form.querySelector('button[type="submit"]').textContent = 'Wysłano ✓';
+      var original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Wysyłanie…';
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      }).then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.success) {
+            btn.textContent = 'Wysłano ✓';
+            if (note) { note.textContent = 'Dziękujemy! Twoje zapytanie zostało wysłane — odezwiemy się wkrótce.'; note.classList.add('show'); }
+            form.reset();
+          } else {
+            btn.disabled = false;
+            btn.textContent = original;
+            if (note) { note.textContent = 'Nie udało się wysłać. Zadzwoń: 536 138 985 lub napisz na biuro@washpro.pl.'; note.classList.add('show'); }
+          }
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = original;
+          if (note) { note.textContent = 'Błąd połączenia. Zadzwoń: 536 138 985 lub napisz na biuro@washpro.pl.'; note.classList.add('show'); }
+        });
     });
   }
 })();
